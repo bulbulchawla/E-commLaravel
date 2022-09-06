@@ -37,5 +37,18 @@ integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="ano
     .slider-text{
         background-color: #82958273 !important
     }
+    .trending-img{
+        height:100px;
+    }
+    .trending-item{
+        float:left;
+        width:25%
+    }
+    .trending-wrapper{
+        margin:30px;
+    }
+    .detail-img{
+        height:200px;
+    }
 </style>
 </html>
