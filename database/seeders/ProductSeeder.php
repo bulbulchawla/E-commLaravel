@@ -42,7 +42,14 @@ class ProductSeeder extends Seeder
                 'description'=>'A fridge with much more feature',
                 'category'=>'fridge',
                 'gallery'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTFx-2-wTOcfr5at01ojZWduXEm5cZ-sRYPJA&usqp=CAU'
-             ]
+            ],
+             [
+                'name' => 'LG Front Load Washing Machine',
+                'price'=>'13,000',
+                'description'=>'LGs best Automatic Front Load Washing Machine with much more feature',
+                'category'=>'Washing Machine',
+                'gallery'=>'https://m.media-amazon.com/images/I/81m1m5L2HUL._SL1500_.jpg',
+             ],
     ]);
     }
 }

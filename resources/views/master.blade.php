@@ -23,6 +23,7 @@ integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="ano
     @yield('content')
     {{View::make('footer')}}
 </body>
+<script></script>
 <style>
     .custom-login{
         height:500px;
@@ -42,13 +43,17 @@ integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="ano
     }
     .trending-item{
         float:left;
-        width:25%
+        width:20%
     }
     .trending-wrapper{
         margin:30px;
     }
     .detail-img{
         height:200px;
+    }
+    .search-box
+    {
+        width: 500px !important
     }
 </style>
 </html>
