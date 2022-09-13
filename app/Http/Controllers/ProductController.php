@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Order;
 use Session;
 
 class ProductController extends Controller
@@ -50,8 +51,7 @@ class ProductController extends Controller
     function cartList()
     {
         $userId = Session::get('user')['id'];
-        $products = DB::table('cart')
-        ->join('products','cart.product_id','=','products.id')
+        $products = Cart::join('products','cart.product_id','=','products.id')
         ->where('cart.user_id',$userId)
         ->select('products.*','cart.id as cart_id')
         ->get();
@@ -69,7 +69,7 @@ class ProductController extends Controller
     function orderNow()
     {
         $userId = Session::get('user')['id'];
-         $total = Cart::join('products','products.id','cart.product_id')
+         $total = Cart::join('products','cart.product_id','=','products.id')
          ->where('cart.user_id',$userId)
          ->sum('products.price');
 
@@ -77,6 +77,31 @@ class ProductController extends Controller
     }
     function orderPlace(Request $req)
     {
-        dd ($req->input());
+        $userId = Session::get('user')['id'];
+        $allCart = Cart::where('user_id',$userId)->get();
+        foreach($allCart as $cart)
+        {
+            $order = new Order;
+            $order->product_id=$cart['product_id'];
+            $order->user_id=$cart['user_id'];
+            $order->status="pending";
+            $order->payment_method=$req->payment;
+            $order->payment_status="pending";
+            $order->address=$req->address;
+            $order->save();
+            Cart::where('user_id',$userId)->delete();
+        }
+         $req->input();
+         return redirect('/');
+       
+    }
+    function myOrders()
+    {
+        $userId = Session::get('user')['id'];
+        $orders = Order::join('products','orders.product_id','=','products.id')
+        ->where('orders.user_id',$userId)
+        ->get();
+
+         return view('myorders',['orders'=>$orders]);
     }
 }
